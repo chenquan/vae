@@ -43,7 +43,7 @@ class GCNN(Layer): # 定义GCNN层，结合残差
         self.output_dim = output_dim
         self.residual = residual
     def build(self, input_shape):
-        if self.output_dim == None:
+        if self.output_dim is None:
             self.output_dim = input_shape[-1]
         self.kernel = self.add_weight(name='gcnn_kernel',
                                      shape=(3, input_shape[-1],
@@ -53,10 +53,7 @@ class GCNN(Layer): # 定义GCNN层，结合残差
     def call(self, x):
         _ = K.conv1d(x, self.kernel, padding='same')
         _ = _[:,:,:self.output_dim] * K.sigmoid(_[:,:,self.output_dim:])
-        if self.residual:
-            return _ + x
-        else:
-            return _
+        return _ + x if self.residual else _
 
 
 input_sentence = Input(shape=(2*n,), dtype='int32')

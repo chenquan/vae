@@ -31,7 +31,7 @@ x_test = x_test.reshape((-1, img_dim, img_dim, 1))
 x = Input(shape=(img_dim, img_dim, 1))
 h = x
 
-for i in range(2):
+for _ in range(2):
     filters *= 2
     h = Conv2D(filters=filters,
                kernel_size=3,
@@ -58,7 +58,7 @@ h = z
 h = Dense(np.prod(h_shape))(h)
 h = Reshape(h_shape)(h)
 
-for i in range(2):
+for _ in range(2):
     h = Conv2DTranspose(filters=filters,
                         kernel_size=3,
                         strides=1,

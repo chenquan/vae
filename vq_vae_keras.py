@@ -94,7 +94,7 @@ e_model.summary()
 z_in = Input(shape=K.int_shape(x)[1:])
 z = z_in
 
-for i in range(num_layers):
+for _ in range(num_layers):
     z = BatchNormalization()(z)
     z = resnet_block(z)
 

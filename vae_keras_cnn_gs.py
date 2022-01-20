@@ -7,6 +7,7 @@
    https://github.com/keras-team/keras/blob/master/examples/variational_autoencoder_deconv.py
 '''
 
+
 from __future__ import print_function
 
 import numpy as np
@@ -45,7 +46,7 @@ epochs = 30
 x_in = Input(shape=input_shape)
 x = x_in
 
-for i in range(2):
+for _ in range(2):
     filters *= 2
     x = Conv2D(filters=filters,
                kernel_size=kernel_size,
@@ -86,7 +87,7 @@ x = Dense(32, activation='relu')(x)
 x = Dense(shape[1] * shape[2] * shape[3], activation='relu')(x)
 x = Reshape((shape[1], shape[2], shape[3]))(x)
 
-for i in range(2):
+for _ in range(2):
     x = Conv2DTranspose(filters=filters,
                         kernel_size=kernel_size,
                         activation='relu',
